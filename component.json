@@ -1,0 +1,20 @@
+{
+  "name": "focus",
+  "repo": "component/focus",
+  "description": "Image focal point detection",
+  "version": "0.0.1",
+  "keywords": ["image", "detect", "detection", "object", "subject"],
+  "dependencies": {
+    "component/convolve": "*"
+  },
+  "development": {
+    "component/dropload": "*",
+    "component/file": "*"
+  },
+  "scripts": [
+    "index.js",
+    "edges.js",
+    "point.js",
+    "segment.js"
+  ]
+}

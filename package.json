@@ -1,0 +1,10 @@
+{
+  "name": "focus",
+  "description": "Image focal point detection",
+  "version": "0.0.1",
+  "keywords": ["image", "detect", "detection", "object", "subject"],
+  "dependencies": {
+    "convolve": "*"
+  },
+  "main": "index.js"
+}

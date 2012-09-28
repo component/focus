@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Focus</title>
+    <style>
+      body {
+        padding: 50px;
+        font: 14px Helvetica, Arial, sans-serif;
+      }
+      input[type='text'] {
+        padding: 5px;
+        width: 300px;
+      }
+      canvas {
+        float: left;
+        clear: both;
+      }
+      #thumb {
+        float: left;
+        clear: both;
+        overflow: hidden;
+        border: 1px dotted #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Focus</h1>
+    <p>Focal point detection algorithm. Drag and drop an image! <span id="point"></span></p>
+    <canvas id="source"></canvas>
+    <canvas id="thumb" width=300 height=300></canvas>
+
+    <script src="build/build.js"></script>
+    <script>
+      var point = document.querySelector('#point');
+      var focus = require('focus');
+      var Dropload = require('component-dropload');
+      var File = require('component-file');
+      var canvas = document.querySelector('#source');
+      var ctx = canvas.getContext('2d');
+      var drop = Dropload(document.querySelector('html'));
+
+      drop.on('upload', function(upload){
+        var file = File(upload.file);
+        file.toDataURL(function(err, str){
+          var img = new Image;
+          img.onload = function(){
+            var w = img.width;
+            var h = img.height;
+            canvas.width = w;
+            canvas.height = h;
+            ctx.drawImage(img, 0, 0);
+            var p = focus(canvas, { debug: true });
+            point.textContent = p.toString();
+            thumb(img, p);
+          };
+          img.src = str;
+        });
+      });
+
+      function thumb(img, p) {
+        var canvas = document.querySelector('#thumb');
+        var ctx = canvas.getContext('2d');
+        var w = canvas.width;
+        var h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(img, -(p.x - w / 2), -(p.y - h / 2));
+      }
+    </script>
+  </body>
+</html>
