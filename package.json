@@ -2,9 +2,19 @@
   "name": "focus",
   "description": "Image focal point detection",
   "version": "0.0.1",
-  "keywords": ["image", "detect", "detection", "object", "subject"],
+  "keywords": [
+    "image",
+    "detect",
+    "detection",
+    "object",
+    "subject"
+  ],
   "dependencies": {
     "convolve": "*"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/component/focus.git"
+  }
 }
